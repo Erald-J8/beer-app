@@ -20,7 +20,7 @@ export const getTypeOrmModuleOptions = (
       migrationsRun: true,
       migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
       cli: {
-          migrationsDir: 'src/infrastructure/database/migrations',
+          migrationsDir: 'src/infrastructure/db/migrations',
       },
     } as unknown as TypeOrmModuleOptions);
 

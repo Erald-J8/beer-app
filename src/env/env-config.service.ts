@@ -6,22 +6,22 @@ export class EnvironmentConfigService {
   constructor(private configService: ConfigService) {}
 
   getDatabaseHost(): string {
-    return this.configService.get<string>('POSTGRES_HOST');
+      return this.configService.get<string>('POSTGRES_HOST');
   }
 
   getDatabasePort(): number {
-    return this.configService.get<number>('POSTGRES_PORT');
+      return this.configService.get<number>('POSTGRES_PORT');
   }
 
   getDatabaseUser(): string {
-    return this.configService.get<string>('POSTGRES_USER');
+      return this.configService.get<string>('POSTGRES_USER');
   }
 
   getDatabasePassword(): string {
-    return this.configService.get<string>('POSTGRES_PASSWORD');
+      return this.configService.get<string>('POSTGRES_PASSWORD');
   }
 
   getDatabaseName(): string {
-    return this.configService.get<string>('POSTGRES_DATABASE');
+      return this.configService.get<string>('POSTGRES_DATABASE');
   }
 }

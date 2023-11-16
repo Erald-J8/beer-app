@@ -24,7 +24,7 @@ services:
       POSTGRES_DB: postgres
 
     ports:
-      - 4321:4321
+      - 5432:5432
 
     networks:
       - beer-network
