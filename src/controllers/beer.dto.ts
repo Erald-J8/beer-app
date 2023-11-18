@@ -10,6 +10,7 @@ export class CreateBeerDto {
     @IsString()
     type: string;
 
+    @ApiProperty({ required: true })
     @ApiProperty()
     @IsNumber()
     rating: number;
@@ -30,4 +31,9 @@ export class UpdateBeerDto {
     @IsOptional()
     @IsNumber()
     rating: number;
+
+    @ApiProperty()
+    @IsOptional()
+    @IsNumber()
+    totalRatings: number;
 }

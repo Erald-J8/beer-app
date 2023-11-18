@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -17,7 +18,13 @@ export class BeerController {
 
   @Get('beers')
   async getBeers(@Query('name') name?: string) {
-      return await this.beerService.get(name);
+      return await this.beerService.getByName(name);
+  }
+
+  @Post('beers')
+  @ApiBody({ type: CreateBeerDto })
+  async createBeer(@Body() params: CreateBeerDto) {
+      return await this.beerService.create(params);
   }
 
   @Patch('beers/:id')
@@ -26,9 +33,9 @@ export class BeerController {
       return await this.beerService.update(id, params);
   }
 
-  @Post('beers')
+  @Delete('beers/:id')
   @ApiBody({ type: CreateBeerDto })
-  async createBeer(@Body() params: CreateBeerDto) {
-      return await this.beerService.create(params);
+  async deleteBeer(@Body() @Param('id') id: string) {
+      return await this.beerService.delete(id);
   }
 }
