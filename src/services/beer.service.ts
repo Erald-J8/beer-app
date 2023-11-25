@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, FindOptionsWhere, Repository, UpdateResult } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { CreateBeerDto, UpdateBeerDto } from 'src/controllers/beer.dto';
 import { Beer } from 'src/database/beer.entity';
-import { UUID } from 'typeorm/driver/mongodb/bson.typings';
 
 @Injectable()
 export class BeerService {
@@ -22,10 +21,12 @@ export class BeerService {
     if (params.rating) {
       try {
         const beer = await this.beerRepository.findOneByOrFail({ id })
-        const totalRatings = beer ? beer.totalRatings : 1
-        params.rating = (beer.rating * totalRatings + params.rating) / (totalRatings + 1)
-        params.totalRatings = beer.totalRatings + 1
-        console.log(beer)
+
+        const currentBeerRating = beer ? beer.rating : 0
+        const totalRatings = beer ? beer.totalRatings : 0
+
+        params.rating = (currentBeerRating * totalRatings + params.rating) / (totalRatings + 1)
+        params.totalRatings = totalRatings + 1
       } catch (err) {
         console.log(`Could not find beer with the given id: ${id}`)
       }

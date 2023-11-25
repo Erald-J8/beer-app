@@ -11,15 +11,10 @@ export class Beer {
     @Column('varchar')
     type: string;
 
-    @Column({ type: 'decimal' })
+    @Column({ type: 'decimal', nullable: true, })
     rating: number;
 
-    @Column({ default: 1 })
+    @Column({ nullable: true })
     totalRatings: number
 
-    @BeforeInsert()
-    setDefaultTotalRatings() {
-        // Set the default value of totalRatings to 1 before inserting into the database
-        this.totalRatings = 1
-    }
 }

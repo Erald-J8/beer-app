@@ -10,8 +10,8 @@ export class CreateBeerDto {
     @IsString()
     type: string;
 
-    @ApiProperty({ required: true })
     @ApiProperty()
+    @IsOptional()
     @IsNumber()
     rating: number;
 }
